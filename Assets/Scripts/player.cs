@@ -17,13 +17,10 @@ public class player : MonoBehaviour
     [SerializeField] float positionYawFactor = 3f;
     
     [SerializeField] float controlRollFactor = -20f;
-/*
-    [SerializeField] ParticleSystem LaserParticles_L;
-    [SerializeField] ParticleSystem LaserParticles_R;
-*/
+
     float xThrol, yThrol;
 
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -35,21 +32,7 @@ public class player : MonoBehaviour
     void Update()
     {
         ProcessTraslation();
-        ProcessRotation();
-
-       /* bool fire = CrossPlatformInputManager.GetButton("Fire1");
-
-        if (LaserParticles_L.isPlaying && LaserParticles_R.isPlaying && !fire)
-        {
-            LaserParticles_L.Stop();
-            LaserParticles_R.Stop();
-        }
-        else
-        {
-            LaserParticles_L.Play();
-            print("NOT - firing");
-        }
-        */
+        ProcessRotation();               
     }
 
 
