@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6110344971203858016}
   - component: {fileID: 6099498541559981254}
   - component: {fileID: 6093047081675696144}
+  - component: {fileID: 1217754467}
   m_Layer: 0
   m_Name: Enemy_Ship_03
   m_TagString: Untagged
@@ -77,3 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1217754467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115366289520763500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7a5c5f882fe56418fc921b5417cf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionFX: {fileID: 6509126659869199210, guid: 5977f0d57ec75ba46b7afe84e8472808,
+    type: 3}
+  parent: {fileID: 0}
+  scorePerHit: 12

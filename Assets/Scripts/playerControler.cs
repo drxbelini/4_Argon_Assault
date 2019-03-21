@@ -3,36 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class player : MonoBehaviour
-{
-    [Tooltip ("in ms^-1")] [SerializeField] float xSpeed = 10f;
-    [Tooltip("in m")] [SerializeField] float xPos = 8f;
+public class playerControler : MonoBehaviour
+{   
+    [Header("General")]
+    [Tooltip ("in ms^-1")] [SerializeField] float controlSpeed = 10f;
+    [Tooltip("in m")] [SerializeField] float xRange = 8f;
+    [Tooltip("in m")] [SerializeField] float yRange = 4f;
 
-    [Tooltip("in ms^-1")] [SerializeField] float ySpeed = 10f;
-    [Tooltip("in m")] [SerializeField] float yPos = 4f;
-
+    [Header("Position Factor")]
     [SerializeField] float positionPitchFactor = -2.5f;
-    [SerializeField] float controlPitchFactor = -17f;
-
     [SerializeField] float positionYawFactor = 3f;
-    
+
+    [Header("Control Factor")]
+    [SerializeField] float controlPitchFactor = -17f;   
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrol, yThrol;
-
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    bool disable = false;
+    
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if (disable) { return; }
         ProcessTraslation();
         ProcessRotation();               
+    }
+
+    public void disableControl() // Called by string reference
+    {
+        disable = true;
+        print("Sended message");
+
     }
 
 
@@ -56,14 +58,14 @@ public class player : MonoBehaviour
         xThrol = CrossPlatformInputManager.GetAxis("Horizontal");
         yThrol = CrossPlatformInputManager.GetAxis("Vertical");
 
-        float xOffset = xThrol * xSpeed * Time.deltaTime;
-        float yOffset = yThrol * ySpeed * Time.deltaTime;
+        float xOffset = xThrol * controlSpeed * Time.deltaTime;
+        float yOffset = yThrol * controlSpeed * Time.deltaTime;
 
         float rawXpos = transform.localPosition.x + xOffset;
         float rawYpos = transform.localPosition.y + yOffset;
 
-        float clapedXpos = Mathf.Clamp(rawXpos, -xPos, xPos);
-        float clapedYpos = Mathf.Clamp(rawYpos, -yPos, yPos);
+        float clapedXpos = Mathf.Clamp(rawXpos, -xRange, xRange);
+        float clapedYpos = Mathf.Clamp(rawYpos, -yRange, yRange);
 
         transform.localPosition = new Vector3(clapedXpos, clapedYpos, transform.localPosition.z);
     }
